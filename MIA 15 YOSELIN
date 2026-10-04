@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b0010">
+<meta name="description" content="Invitación digital premium - Yoselin Mis 15 - 05 de diciembre de 2026">
+<title>Yoselin · Mis 15 · 2026</title>
+
+<style>
+:root{
+  --ruby:#5b0010;
+  --ruby-dark:#230006;
+  --ruby-light:#a00025;
+  --silver:#e9e9ef;
+  --silver-dark:#8c8c98;
+  --white:#ffffff;
+  --pink:#ff4f91;
+  --gold:#f4d98b;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,.13), transparent 25%),
+    radial-gradient(circle at 20% 50%, rgba(255,0,70,.18), transparent 30%),
+    linear-gradient(135deg,#180004,#650014 45%,#210006 100%);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* =========================
+   FONDO Y LUCES
+========================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  z-index:-5;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255,255,255,.08) 8deg,
+      transparent 18deg,
+      transparent 55deg,
+      rgba(255,0,80,.10) 65deg,
+      transparent 80deg
+    );
+  animation:lightsRotate 18s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes lightsRotate{
+  to{transform:rotate(360deg);}
+}
+
+.disco-light{
+  position:fixed;
+  width:35vw;
+  height:80vh;
+  top:-20vh;
+  z-index:-3;
+  filter:blur(15px);
+  opacity:.18;
+  transform-origin:top center;
+  pointer-events:none;
+}
+
+.light-left{
+  left:0;
+  background:linear-gradient(to bottom,rgba(255,40,90,.9),transparent);
+  transform:rotate(-25deg);
+  animation:sweepLeft 7s ease-in-out infinite alternate;
+}
+
+.light-right{
+  right:0;
+  background:linear-gradient(to bottom,rgba(255,255,255,.8),transparent);
+  transform:rotate(25deg);
+  animation:sweepRight 8s ease-in-out infinite alternate;
+}
+
+@keyframes sweepLeft{
+  to{transform:rotate(25deg);}
+}
+
+@keyframes sweepRight{
+  to{transform:rotate(-25deg);}
+}
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* =========================
+   BIENVENIDA
+========================= */
+
+#welcome{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,rgba(170,0,35,.35),transparent 35%),
+    linear-gradient(135deg,#160004,#720019,#170004);
+  transition:opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#welcome.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.welcome-content{
+  width:min(92%,700px);
+  padding:30px 20px;
+  position:relative;
+  z-index:2;
+}
+
+.welcome-small{
+  letter-spacing:7px;
+  font-size:clamp(.7rem,2vw,1rem);
+  color:#ddd;
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+
+.welcome-name{
+  font-size:clamp(4rem,15vw,9rem);
+  line-height:.9;
+  font-weight:400;
+  font-style:italic;
+  background:linear-gradient(
+    100deg,
+    #777,
+    #fff,
+    #aaa,
+    #fff,
+    #777
+  );
+  background-size:300%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:metal 5s linear infinite;
+  text-shadow:0 0 25px rgba(255,255,255,.15);
+}
+
+@keyframes metal{
+  to{background-position:300% center;}
+}
+
+.welcome-event{
+  margin-top:15px;
+  letter-spacing:10px;
+  font-size:clamp(1.1rem,4vw,2rem);
+  color:#fff;
+  text-shadow:0 0 18px rgba(255,50,100,.8);
+}
+
+.open-button{
+  margin-top:40px;
+  border:1px solid rgba(255,255,255,.65);
+  background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,0,70,.25));
+  color:white;
+  padding:18px 38px;
+  border-radius:50px;
+  font-family:inherit;
+  font-size:1rem;
+  letter-spacing:3px;
+  cursor:pointer;
+  box-shadow:
+    0 0 25px rgba(255,30,90,.4),
+    inset 0 0 20px rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  transition:.35s ease;
+}
+
+.open-button:hover{
+  transform:scale(1.06);
+  box-shadow:
+    0 0 45px rgba(255,50,110,.8),
+    inset 0 0 25px rgba(255,255,255,.15);
+}
+
+/* =========================
+   BOLA DE ESPEJOS
+========================= */
+
+.disco-ball{
+  width:min(55vw,300px);
+  aspect-ratio:1;
+  border-radius:50%;
+  position:relative;
+  margin:0 auto 30px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 17px,
+      rgba(0,0,0,.35) 18px 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 17px,
+      rgba(0,0,0,.35) 18px 20px
+    ),
+    linear-gradient(135deg,#555,#fff,#777,#eee,#444);
+  box-shadow:
+    0 0 20px rgba(255,255,255,.8),
+    0 0 60px rgba(255,0,80,.35);
+  animation:ballSpin 10s linear infinite;
+  overflow:hidden;
+}
+
+.disco-ball::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 25%,white 0 3%,transparent 4%),
+    radial-gradient(circle at 65% 35%,white 0 2%,transparent 3%),
+    radial-gradient(circle at 40% 70%,white 0 3%,transparent 4%),
+    radial-gradient(circle at 80% 70%,white 0 2%,transparent 3%);
+  background-size:45px 45px;
+  mix-blend-mode:screen;
+}
+
+.disco-ball::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.85),transparent 15%,rgba(0,0,0,.35) 80%);
+}
+
+@keyframes ballSpin{
+  to{transform:rotate(360deg);}
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+main{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1.2s ease,transform 1.2s ease;
+}
+
+main.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:100px 20px 60px;
+  position:relative;
+}
+
+.hero-content{
+  max-width:900px;
+}
+
+.kicker{
+  letter-spacing:6px;
+  color:#ddd;
+  font-size:.9rem;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:clamp(5rem,18vw,12rem);
+  font-weight:400;
+  font-style:italic;
+  line-height:.8;
+  background:linear-gradient(
+    120deg,
+    #777,
+    #fff,
+    #bdbdc7,
+    #fff,
+    #777
+  );
+  background-size:250%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:metal 6s linear infinite;
+}
+
+.hero h2{
+  margin-top:35px;
+  font-size:clamp(1.5rem,5vw,3rem);
+  letter-spacing:12px;
+  color:white;
+  text-shadow:0 0 25px rgba(255,30,100,.7);
+}
+
+.section{
+  padding:80px 20px;
+  max-width:1050px;
+  margin:auto;
+}
+
+.glass{
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.025)
+    );
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:28px;
+  padding:45px 30px;
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.18);
+}
+
+.section-title{
+  text-align:center;
+  font-size:clamp(1.8rem,6vw,3rem);
+  letter-spacing:4px;
+  margin-bottom:35px;
+  color:#fff;
+  text-shadow:0 0 20px rgba(255,30,90,.55);
+}
+
+/* =========================
+   FECHA
+========================= */
+
+.date-big{
+  text-align:center;
+  font-size:clamp(2.3rem,8vw,5rem);
+  letter-spacing:8px;
+  background:linear-gradient(90deg,#888,#fff,#aaa,#fff,#777);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.time{
+  text-align:center;
+  margin-top:20px;
+  font-size:1.5rem;
+  letter-spacing:5px;
+}
+
+/* =========================
+   UBICACIÓN
+========================= */
+
+.location{
+  text-align:center;
+}
+
+.location h3{
+  font-size:clamp(1.5rem,5vw,2.5rem);
+  letter-spacing:3px;
+  margin-bottom:18px;
+}
+
+.location p{
+  color:#ddd;
+  line-height:1.8;
+  font-size:1.1rem;
+}
+
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:30px;
+  padding:15px 25px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.4);
+  background:linear-gradient(135deg,#7d0018,#c00035);
+  box-shadow:0 0 25px rgba(220,0,60,.3);
+  transition:.3s ease;
+}
+
+.button:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 40px rgba(255,30,100,.65);
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.count-box{
+  text-align:center;
+  padding:25px 10px;
+  border-radius:20px;
+  background:rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.count-number{
+  display:block;
+  font-size:clamp(2rem,7vw,4rem);
+  background:linear-gradient(#fff,#999);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.count-label{
+  margin-top:8px;
+  color:#ccc;
+  letter-spacing:2px;
+  font-size:.75rem;
+  text-transform:uppercase;
+}
+
+/* =========================
+   MÚSICA
+========================= */
+
+.music{
+  text-align:center;
+}
+
+audio{
+  width:100%;
+  max-width:600px;
+  margin-top:15px;
+  filter:sepia(20%) saturate(120%);
+}
+
+/* =========================
+   LLUVIA DE SOBRES
+========================= */
+
+.envelope{
+  text-align:center;
+}
+
+.envelope-icon{
+  font-size:4rem;
+  margin-bottom:20px;
+  filter:drop-shadow(0 0 15px rgba(255,80,140,.7));
+}
+
+.envelope p{
+  color:#ddd;
+  line-height:1.9;
+  font-size:1.05rem;
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message{
+  text-align:center;
+}
+
+.message p{
+  max-width:720px;
+  margin:auto;
+  font-size:1.25rem;
+  line-height:2;
+  color:#eee;
+  font-style:italic;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp{
+  text-align:center;
+}
+
+.whatsapp-button{
+  background:linear-gradient(135deg,#6b0015,#a8002a);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+  padding:70px 20px 45px;
+  color:#ddd;
+}
+
+.footer-main{
+  font-size:1.15rem;
+  letter-spacing:2px;
+  margin-bottom:25px;
+}
+
+.future{
+  max-width:650px;
+  margin:auto;
+  padding:20px;
+  border:1px dashed rgba(255,255,255,.2);
+  border-radius:20px;
+  color:#aaa;
+  line-height:2;
+  font-size:.9rem;
+}
+
+/* =========================
+   CANVAS FUEGOS
+========================= */
+
+#fireworks{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:2000;
+  opacity:0;
+}
+
+#fireworks.active{
+  opacity:1;
+}
+
+/* =========================
+   DESTELLOS
+========================= */
+
+.spark{
+  position:fixed;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:
+    0 0 7px #fff,
+    0 0 15px #ff4f91;
+  pointer-events:none;
+  z-index:-1;
+  animation:floatSpark linear infinite;
+}
+
+@keyframes floatSpark{
+  0%{
+    transform:translateY(110vh) scale(.3);
+    opacity:0;
+  }
+  15%{opacity:1;}
+  85%{opacity:1;}
+  100%{
+    transform:translateY(-10vh) scale(1);
+    opacity:0;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+  .glass{
+    padding:35px 20px;
+    border-radius:22px;
+  }
+
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    padding-top:80px;
+  }
+
+  .hero h2{
+    letter-spacing:6px;
+  }
+
+  .section{
+    padding:55px 15px;
+  }
+
+  .date-big{
+    letter-spacing:4px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LUCES -->
+<div class="disco-light light-left"></div>
+<div class="disco-light light-right"></div>
+
+<!-- DESTELLOS -->
+<div id="particles"></div>
+
+<!-- =========================
+     PANTALLA DE BIENVENIDA
+========================= -->
+
+<section id="welcome">
+
+  <div class="welcome-content">
+
+    <div class="disco-ball"></div>
+
+    <div class="welcome-small">
+      Una noche para recordar
+    </div>
+
+    <div class="welcome-name">
+      Yoselin
+    </div>
+
+    <div class="welcome-event">
+      MIS 15
+    </div>
+
+    <button class="open-button" id="openInvitation">
+      ABRIR INVITACIÓN
+    </button>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FUEGOS ARTIFICIALES
+========================= -->
+
+<canvas id="fireworks"></canvas>
+
+<!-- =========================
+     INVITACIÓN
+========================= -->
+
+<main id="invitation">
+
+  <!-- PORTADA -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="kicker">
+        UNA NOCHE PARA RECORDAR
+      </div>
+
+      <h1>Yoselin</h1>
+
+      <h2>MIS 15</h2>
+
+    </div>
+
+  </section>
+
+  <!-- FECHA -->
+  <section class="section">
+
+    <div class="glass">
+
+      <h2 class="section-title">
+        UNA FECHA ESPECIAL
+      </h2>
+
+      <div class="date-big">
+        05 · 12 · 2026
+      </div>
+
+      <div class="time">
+        20:00 hs
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="section">
+
+    <div class="glass location">
+
+      <h2 class="section-title">
+        📍 UBICACIÓN
+      </h2>
+
+      <h3>
+        SALÓN DE JUBILADOS
+      </h3>
+
+      <p>
+        Sobre Facundo Quiroga<br>
+        frente a Ferretería Avenida
+      </p>
+
+      <a
+        class="button"
+        href="https://maps.app.goo.gl/r3GvA9zV5Ms2vXLY9?g_st=aw"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 VER UBICACIÓN
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section class="section">
+
+    <div class="glass">
+
+      <h2 class="section-title">
+        FALTAN...
+      </h2>
+
+      <div class="countdown">
+
+        <div class="count-box">
+          <span class="count-number" id="days">0</span>
+          <span class="count-label">Días</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="hours">0</span>
+          <span class="count-label">Horas</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="minutes">0</span>
+          <span class="count-label">Minutos</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="seconds">0</span>
+          <span class="count-label">Segundos</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MÚSICA -->
+  <section class="section">
+
+    <div class="glass music">
+
+      <h2 class="section-title">
+        🎵 MI CANCIÓN
+      </h2>
+
+      <audio id="music" controls preload="metadata">
+        <source src="musica.mp3" type="audio/mpeg">
+        Tu navegador no puede reproducir este audio.
+      </audio>
+
+    </div>
+
+  </section>
+
+  <!-- LLUVIA DE SOBRES -->
+  <section class="section">
+
+    <div class="glass envelope">
+
+      <div class="envelope-icon">
+        💌
+      </div>
+
+      <h2 class="section-title">
+        LLUVIA DE SOBRES
+      </h2>
+
+      <p>
+        Tu presencia es mi mejor regalo.<br><br>
+
+        Si deseas hacerme un obsequio,<br>
+        habrá una caja de sobres durante la celebración.<br><br>
+
+        Gracias por acompañarme en esta noche tan especial.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- MENSAJE -->
+  <section class="section">
+
+    <div class="glass message">
+
+      <h2 class="section-title">
+        PARA VOS
+      </h2>
+
+      <p>
+        Hay momentos que quedan para siempre en el corazón.<br><br>
+
+        Y quiero compartir uno de los más especiales
+        de mi vida con vos.<br><br>
+
+        Te espero para celebrar mis 15.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section class="section">
+
+    <div class="glass whatsapp">
+
+      <h2 class="section-title">
+        💌 CONFIRMÁ TU ASISTENCIA
+      </h2>
+
+      <p>
+        ¡Me encantaría compartir esta noche con vos!
+      </p>
+
+      <a
+        class="button whatsapp-button"
+        href="https://wa.me/543743557901?text=Hola%20Yoselin%2C%20quiero%20confirmar%20mi%20asistencia%20a%20tus%2015."
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💬 CONFIRMAR ASISTENCIA
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-main">
+    🪩 ✨ Yoselin · Mis 15 · 2026 ✨ 🪩
+  </div>
+
+  <div class="future">
+    <strong>Espacio reservado para:</strong><br>
+    📸 Galería de fotos<br>
+    🎬 Video<br>
+    👗 Dress code<br>
+    💌 Mensajes familiares
+  </div>
+
+</footer>
+
+<script>
+
+/* =========================
+   ABRIR INVITACIÓN
+========================= */
+
+const openButton = document.getElementById("openInvitation");
+const welcome = document.getElementById("welcome");
+const invitation = document.getElementById("invitation");
+const music = document.getElementById("music");
+
+openButton.addEventListener("click", function(){
+
+  /* Intentar reproducir música */
+  music.play().catch(function(){
+    /* Algunos navegadores pueden bloquear el audio.
+       El usuario podrá iniciarlo desde el reproductor. */
+  });
+
+  /* Fuegos */
+  startFireworks();
+
+  /* Transición */
+  setTimeout(function(){
+    welcome.classList.add("hidden");
+    invitation.classList.add("visible");
+    document.body.style.overflow = "auto";
+  }, 900);
+
+});
+
+
+/* =========================
+   CUENTA REGRESIVA
+========================= */
+
+const eventDate = new Date("2026-12-05T20:00:00-03:00").getTime();
+
+function updateCountdown(){
+
+  const now = Date.now();
+  let distance = eventDate - now;
+
+  if(distance < 0){
+    distance = 0;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) /
+    (1000 * 60 * 60)
+  );
+
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60)) /
+    (1000 * 60)
+  );
+
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) /
+    1000
+  );
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2,"0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+const particleContainer =
+  document.getElementById("particles");
+
+for(let i = 0; i < 55; i++){
+
+  const spark = document.createElement("div");
+
+  spark.className = "spark";
+
+  spark.style.left =
+    Math.random() * 100 + "%";
+
+  spark.style.animationDuration =
+    (5 + Math.random() * 9) + "s";
+
+  spark.style.animationDelay =
+    (-Math.random() * 10) + "s";
+
+  spark.style.opacity =
+    .3 + Math.random() * .7;
+
+  const size =
+    1 + Math.random() * 4;
+
+  spark.style.width = size + "px";
+  spark.style.height = size + "px";
+
+  particleContainer.appendChild(spark);
+}
+
+
+/* =========================
+   FUEGOS ARTIFICIALES
+========================= */
+
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+let fireworks = [];
+let fireworkParticles = [];
+let fireworksRunning = false;
+
+const fireColors = [
+  "#ffffff",
+  "#dddddd",
+  "#ff304f",
+  "#ff4f91",
+  "#cfcfd8"
+];
+
+function resizeCanvas(){
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
+
+
+/* Crear cohete */
+
+function createFirework(){
+
+  const startX =
+    Math.random() * canvas.width;
+
+  const targetX =
+    canvas.width * (.15 + Math.random() * .7);
+
+  const targetY =
+    canvas.height * (.12 + Math.random() * .42);
+
+  fireworks.push({
+    x:startX,
+    y:canvas.height + 10,
+    targetX:targetX,
+    targetY:targetY,
+    speed:8 + Math.random() * 4,
+    color:fireColors[
+      Math.floor(Math.random() * fireColors.length)
+    ]
+  });
+
+}
+
+
+/* Explosión */
+
+function explode(x,y,color){
+
+  const amount = 90 + Math.floor(Math.random() * 45);
+
+  for(let i=0;i<amount;i++){
+
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    const speed =
+      1.5 + Math.random() * 6;
+
+    fireworkParticles.push({
+
+      x:x,
+      y:y,
+
+      vx:Math.cos(angle) * speed,
+      vy:Math.sin(angle) * speed,
+
+      life:1,
+
+      decay:.008 + Math.random() * .014,
+
+      color:color
+
+    });
+
+  }
+
+}
+
+
+/* Animación */
+
+function animateFireworks(){
+
+  if(!fireworksRunning) return;
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  /* Cohetes */
+
+  for(let i=fireworks.length-1;i>=0;i--){
+
+    const f = fireworks[i];
+
+    const dx = f.targetX - f.x;
+    const dy = f.targetY - f.y;
+
+    const distance =
+      Math.sqrt(dx*dx + dy*dy);
+
+    const vx =
+      dx / distance * f.speed;
+
+    const vy =
+      dy / distance * f.speed;
+
+    f.x += vx;
+    f.y += vy;
+
+    ctx.beginPath();
+    ctx.arc(f.x,f.y,2,0,Math.PI*2);
+
+    ctx.fillStyle=f.color;
+    ctx.shadowBlur=15;
+    ctx.shadowColor=f.color;
+    ctx.fill();
+
+    if(distance < 15){
+
+      explode(
+        f.x,
+        f.y,
+        f.color
+      );
+
+      fireworks.splice(i,1);
+
+    }
+
+  }
+
+
+  /* Partículas */
+
+  for(let i=fireworkParticles.length-1;i>=0;i--){
+
+    const p=fireworkParticles[i];
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    p.vy += .045;
+
+    p.vx *= .985;
+    p.vy *= .985;
+
+    p.life -= p.decay;
+
+    if(p.life<=0){
+
+      fireworkParticles.splice(i,1);
+      continue;
+
+    }
+
+    ctx.beginPath();
+
+    ctx.arc(
+      p.x,
+      p.y,
+      1.5 + p.life * 2,
+      0,
+      Math.PI*2
+    );
+
+    ctx.globalAlpha=p.life;
+
+    ctx.fillStyle=p.color;
+
+    ctx.shadowBlur=18;
+    ctx.shadowColor=p.color;
+
+    ctx.fill();
+
+  }
+
+  ctx.globalAlpha=1;
+
+  requestAnimationFrame(animateFireworks);
+
+}
+
+
+/* Lanzamiento automático */
+
+function startFireworks(){
+
+  canvas.classList.add("active");
+
+  fireworksRunning=true;
+
+  for(let i=0;i<4;i++){
+
+    setTimeout(
+      createFirework,
+      i * 250
+    );
+
+  }
+
+  animateFireworks();
+
+  const launchInterval =
+    setInterval(function(){
+
+      if(!fireworksRunning){
+
+        clearInterval(launchInterval);
+        return;
+
+      }
+
+      createFirework();
+
+    },700);
+
+
+  /* Los fuegos duran unos segundos */
+
+  setTimeout(function(){
+
+    fireworksRunning=false;
+
+    canvas.classList.remove("active");
+
+    ctx.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+  },9000);
+
+}
+
+</script>
+
+</body>
+</html>
