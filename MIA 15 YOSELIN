@@ -3,637 +3,451 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#5b0010">
-<meta name="description" content="Invitación digital premium - Yoselin Mis 15 - 05 de diciembre de 2026">
-<title>Yoselin · Mis 15 · 2026</title>
+
+<title>Yoselin · Mis 15</title>
 
 <style>
-:root{
-  --ruby:#5b0010;
-  --ruby-dark:#230006;
-  --ruby-light:#a00025;
-  --silver:#e9e9ef;
-  --silver-dark:#8c8c98;
-  --white:#ffffff;
-  --pink:#ff4f91;
-  --gold:#f4d98b;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+html {
+    scroll-behavior: smooth;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Georgia, "Times New Roman", serif;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,.13), transparent 25%),
-    radial-gradient(circle at 20% 50%, rgba(255,0,70,.18), transparent 30%),
-    linear-gradient(135deg,#180004,#650014 45%,#210006 100%);
-  color:white;
-  overflow-x:hidden;
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #fff;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.12), transparent 25%),
+        radial-gradient(circle at 20% 80%, rgba(255,0,70,.25), transparent 30%),
+        linear-gradient(135deg, #180006, #5b0018, #160006);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* =========================
-   FONDO Y LUCES
+   FONDO DISCO
 ========================= */
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:-30%;
-  z-index:-5;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      rgba(255,255,255,.08) 8deg,
-      transparent 18deg,
-      transparent 55deg,
-      rgba(255,0,80,.10) 65deg,
-      transparent 80deg
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(
+            120deg,
+            transparent 0,
+            transparent 45px,
+            rgba(255,255,255,.025) 46px,
+            transparent 48px
+        );
+    animation: fondoMovimiento 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes fondoMovimiento {
+    from {
+        transform: translateX(-100px);
+    }
+    to {
+        transform: translateX(100px);
+    }
+}
+
+/* Luces */
+
+.luz {
+    position: fixed;
+    width: 45vw;
+    height: 120vh;
+    top: -20vh;
+    left: 50%;
+    transform-origin: bottom center;
+    background: linear-gradient(
+        to top,
+        rgba(255,255,255,.20),
+        rgba(255,255,255,.04),
+        transparent
     );
-  animation:lightsRotate 18s linear infinite;
-  pointer-events:none;
+    filter: blur(8px);
+    opacity: .35;
+    pointer-events: none;
+    z-index: 1;
 }
 
-@keyframes lightsRotate{
-  to{transform:rotate(360deg);}
+.luz1 {
+    animation: girar1 7s linear infinite;
 }
 
-.disco-light{
-  position:fixed;
-  width:35vw;
-  height:80vh;
-  top:-20vh;
-  z-index:-3;
-  filter:blur(15px);
-  opacity:.18;
-  transform-origin:top center;
-  pointer-events:none;
+.luz2 {
+    animation: girar2 9s linear infinite;
 }
 
-.light-left{
-  left:0;
-  background:linear-gradient(to bottom,rgba(255,40,90,.9),transparent);
-  transform:rotate(-25deg);
-  animation:sweepLeft 7s ease-in-out infinite alternate;
+@keyframes girar1 {
+    0% { transform: rotate(-55deg); }
+    50% { transform: rotate(55deg); }
+    100% { transform: rotate(-55deg); }
 }
 
-.light-right{
-  right:0;
-  background:linear-gradient(to bottom,rgba(255,255,255,.8),transparent);
-  transform:rotate(25deg);
-  animation:sweepRight 8s ease-in-out infinite alternate;
-}
-
-@keyframes sweepLeft{
-  to{transform:rotate(25deg);}
-}
-
-@keyframes sweepRight{
-  to{transform:rotate(-25deg);}
-}
-
-#particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-1;
+@keyframes girar2 {
+    0% { transform: rotate(55deg); }
+    50% { transform: rotate(-55deg); }
+    100% { transform: rotate(55deg); }
 }
 
 /* =========================
-   BIENVENIDA
+   PARTÍCULAS
 ========================= */
 
-#welcome{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at center,rgba(170,0,35,.35),transparent 35%),
-    linear-gradient(135deg,#160004,#720019,#170004);
-  transition:opacity 1.2s ease, visibility 1.2s ease;
+.particula {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 10px white, 0 0 20px #fff;
+    opacity: .8;
+    pointer-events: none;
+    animation: flotar linear infinite;
+    z-index: 2;
 }
 
-#welcome.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+@keyframes flotar {
+    from {
+        transform: translateY(110vh) scale(.5);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .9;
+    }
+
+    80% {
+        opacity: .8;
+    }
+
+    to {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
 }
 
-.welcome-content{
-  width:min(92%,700px);
-  padding:30px 20px;
-  position:relative;
-  z-index:2;
-}
+/* =========================
+   CONTENEDOR
+========================= */
 
-.welcome-small{
-  letter-spacing:7px;
-  font-size:clamp(.7rem,2vw,1rem);
-  color:#ddd;
-  margin-bottom:12px;
-  text-transform:uppercase;
-}
-
-.welcome-name{
-  font-size:clamp(4rem,15vw,9rem);
-  line-height:.9;
-  font-weight:400;
-  font-style:italic;
-  background:linear-gradient(
-    100deg,
-    #777,
-    #fff,
-    #aaa,
-    #fff,
-    #777
-  );
-  background-size:300%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:metal 5s linear infinite;
-  text-shadow:0 0 25px rgba(255,255,255,.15);
-}
-
-@keyframes metal{
-  to{background-position:300% center;}
-}
-
-.welcome-event{
-  margin-top:15px;
-  letter-spacing:10px;
-  font-size:clamp(1.1rem,4vw,2rem);
-  color:#fff;
-  text-shadow:0 0 18px rgba(255,50,100,.8);
-}
-
-.open-button{
-  margin-top:40px;
-  border:1px solid rgba(255,255,255,.65);
-  background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,0,70,.25));
-  color:white;
-  padding:18px 38px;
-  border-radius:50px;
-  font-family:inherit;
-  font-size:1rem;
-  letter-spacing:3px;
-  cursor:pointer;
-  box-shadow:
-    0 0 25px rgba(255,30,90,.4),
-    inset 0 0 20px rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
-  transition:.35s ease;
-}
-
-.open-button:hover{
-  transform:scale(1.06);
-  box-shadow:
-    0 0 45px rgba(255,50,110,.8),
-    inset 0 0 25px rgba(255,255,255,.15);
+.contenedor {
+    position: relative;
+    z-index: 5;
+    width: min(920px, 92%);
+    margin: auto;
+    padding: 35px 0 50px;
 }
 
 /* =========================
    BOLA DE ESPEJOS
 ========================= */
 
-.disco-ball{
-  width:min(55vw,300px);
-  aspect-ratio:1;
-  border-radius:50%;
-  position:relative;
-  margin:0 auto 30px;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 17px,
-      rgba(0,0,0,.35) 18px 20px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 17px,
-      rgba(0,0,0,.35) 18px 20px
-    ),
-    linear-gradient(135deg,#555,#fff,#777,#eee,#444);
-  box-shadow:
-    0 0 20px rgba(255,255,255,.8),
-    0 0 60px rgba(255,0,80,.35);
-  animation:ballSpin 10s linear infinite;
-  overflow:hidden;
+.disco {
+    width: 130px;
+    height: 130px;
+    margin: 10px auto 30px;
+    border-radius: 50%;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #fff 0 5px,
+            #aaa 6px 10px,
+            #444 11px 15px
+        );
+    box-shadow:
+        0 0 20px #fff,
+        0 0 45px rgba(255,255,255,.7),
+        0 0 90px rgba(255,0,70,.5);
+    animation: discoGiro 8s linear infinite;
 }
 
-.disco-ball::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 30% 25%,white 0 3%,transparent 4%),
-    radial-gradient(circle at 65% 35%,white 0 2%,transparent 3%),
-    radial-gradient(circle at 40% 70%,white 0 3%,transparent 4%),
-    radial-gradient(circle at 80% 70%,white 0 2%,transparent 3%);
-  background-size:45px 45px;
-  mix-blend-mode:screen;
-}
-
-.disco-ball::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.85),transparent 15%,rgba(0,0,0,.35) 80%);
-}
-
-@keyframes ballSpin{
-  to{transform:rotate(360deg);}
+@keyframes discoGiro {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* =========================
-   CONTENIDO
+   PORTADA
 ========================= */
 
-main{
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity 1.2s ease,transform 1.2s ease;
+.portada {
+    text-align: center;
+    padding: 55px 20px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 30px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45),
+        inset 0 0 30px rgba(255,255,255,.04);
 }
 
-main.visible{
-  opacity:1;
-  transform:translateY(0);
+.pre-titulo {
+    font-size: 15px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #eee;
+    margin-bottom: 18px;
 }
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:100px 20px 60px;
-  position:relative;
-}
-
-.hero-content{
-  max-width:900px;
-}
-
-.kicker{
-  letter-spacing:6px;
-  color:#ddd;
-  font-size:.9rem;
-  margin-bottom:25px;
-}
-
-.hero h1{
-  font-size:clamp(5rem,18vw,12rem);
-  font-weight:400;
-  font-style:italic;
-  line-height:.8;
-  background:linear-gradient(
-    120deg,
-    #777,
-    #fff,
-    #bdbdc7,
-    #fff,
-    #777
-  );
-  background-size:250%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:metal 6s linear infinite;
-}
-
-.hero h2{
-  margin-top:35px;
-  font-size:clamp(1.5rem,5vw,3rem);
-  letter-spacing:12px;
-  color:white;
-  text-shadow:0 0 25px rgba(255,30,100,.7);
-}
-
-.section{
-  padding:80px 20px;
-  max-width:1050px;
-  margin:auto;
-}
-
-.glass{
-  border:1px solid rgba(255,255,255,.18);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.025)
+.nombre {
+    font-size: clamp(58px, 12vw, 110px);
+    line-height: .95;
+    font-weight: normal;
+    font-style: italic;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #bbb,
+        #fff,
+        #aaa,
+        #fff
     );
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-radius:28px;
-  padding:45px 30px;
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.35),
-    inset 0 1px rgba(255,255,255,.18);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brilloTexto 4s linear infinite;
+    text-shadow: 0 0 25px rgba(255,255,255,.25);
 }
 
-.section-title{
-  text-align:center;
-  font-size:clamp(1.8rem,6vw,3rem);
-  letter-spacing:4px;
-  margin-bottom:35px;
-  color:#fff;
-  text-shadow:0 0 20px rgba(255,30,90,.55);
+@keyframes brilloTexto {
+    from { background-position: 0% center; }
+    to { background-position: 300% center; }
+}
+
+.mis15 {
+    margin-top: 20px;
+    font-size: clamp(30px, 7vw, 60px);
+    letter-spacing: 10px;
+    color: #fff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 30px rgba(255,0,60,.7);
 }
 
 /* =========================
-   FECHA
+   TARJETAS
 ========================= */
 
-.date-big{
-  text-align:center;
-  font-size:clamp(2.3rem,8vw,5rem);
-  letter-spacing:8px;
-  background:linear-gradient(90deg,#888,#fff,#aaa,#fff,#777);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+.tarjeta {
+    margin-top: 25px;
+    padding: 32px 25px;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.20);
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        inset 0 0 25px rgba(255,255,255,.03);
 }
 
-.time{
-  text-align:center;
-  margin-top:20px;
-  font-size:1.5rem;
-  letter-spacing:5px;
+.titulo-seccion {
+    font-size: 18px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: #eee;
+}
+
+.fecha {
+    font-size: clamp(30px, 7vw, 50px);
+    letter-spacing: 5px;
+    font-weight: bold;
+}
+
+.hora {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #ddd;
 }
 
 /* =========================
    UBICACIÓN
 ========================= */
 
-.location{
-  text-align:center;
+.lugar {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.location h3{
-  font-size:clamp(1.5rem,5vw,2.5rem);
-  letter-spacing:3px;
-  margin-bottom:18px;
+.direccion {
+    line-height: 1.7;
+    color: #ddd;
+    font-size: 18px;
 }
 
-.location p{
-  color:#ddd;
-  line-height:1.8;
-  font-size:1.1rem;
+.boton {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 14px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255,255,255,.45);
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.18),
+        rgba(255,0,60,.35)
+    );
+    box-shadow:
+        0 0 20px rgba(255,0,60,.25),
+        inset 0 0 10px rgba(255,255,255,.08);
+    transition: .3s;
 }
 
-.button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  margin-top:30px;
-  padding:15px 25px;
-  border-radius:50px;
-  color:white;
-  text-decoration:none;
-  border:1px solid rgba(255,255,255,.4);
-  background:linear-gradient(135deg,#7d0018,#c00035);
-  box-shadow:0 0 25px rgba(220,0,60,.3);
-  transition:.3s ease;
-}
-
-.button:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 40px rgba(255,30,100,.65);
-}
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.count-box{
-  text-align:center;
-  padding:25px 10px;
-  border-radius:20px;
-  background:rgba(0,0,0,.18);
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.count-number{
-  display:block;
-  font-size:clamp(2rem,7vw,4rem);
-  background:linear-gradient(#fff,#999);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-.count-label{
-  margin-top:8px;
-  color:#ccc;
-  letter-spacing:2px;
-  font-size:.75rem;
-  text-transform:uppercase;
+.boton:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 0 25px rgba(255,255,255,.4),
+        0 0 45px rgba(255,0,70,.45);
 }
 
 /* =========================
-   MÚSICA
+   CUENTA REGRESIVA
 ========================= */
 
-.music{
-  text-align:center;
+.contador {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 20px;
 }
 
-audio{
-  width:100%;
-  max-width:600px;
-  margin-top:15px;
-  filter:sepia(20%) saturate(120%);
+.tiempo {
+    padding: 18px 8px;
+    border-radius: 18px;
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(255,255,255,.18);
 }
 
-/* =========================
-   LLUVIA DE SOBRES
-========================= */
-
-.envelope{
-  text-align:center;
+.numero {
+    display: block;
+    font-size: clamp(28px, 6vw, 45px);
+    font-weight: bold;
 }
 
-.envelope-icon{
-  font-size:4rem;
-  margin-bottom:20px;
-  filter:drop-shadow(0 0 15px rgba(255,80,140,.7));
-}
-
-.envelope p{
-  color:#ddd;
-  line-height:1.9;
-  font-size:1.05rem;
+.etiqueta {
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #ccc;
 }
 
 /* =========================
    MENSAJE
 ========================= */
 
-.message{
-  text-align:center;
+.mensaje {
+    font-size: 21px;
+    line-height: 1.8;
+    color: #eee;
 }
 
-.message p{
-  max-width:720px;
-  margin:auto;
-  font-size:1.25rem;
-  line-height:2;
-  color:#eee;
-  font-style:italic;
+.firma {
+    margin-top: 25px;
+    font-size: 25px;
+    font-style: italic;
 }
 
 /* =========================
    WHATSAPP
 ========================= */
 
-.whatsapp{
-  text-align:center;
+.whatsapp {
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.15),
+        rgba(130,0,35,.5)
+    );
 }
 
-.whatsapp-button{
-  background:linear-gradient(135deg,#6b0015,#a8002a);
+/* =========================
+   FUEGOS ARTIFICIALES
+========================= */
+
+#fuegos {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
 }
 
 /* =========================
    FOOTER
 ========================= */
 
-footer{
-  text-align:center;
-  padding:70px 20px 45px;
-  color:#ddd;
-}
-
-.footer-main{
-  font-size:1.15rem;
-  letter-spacing:2px;
-  margin-bottom:25px;
-}
-
-.future{
-  max-width:650px;
-  margin:auto;
-  padding:20px;
-  border:1px dashed rgba(255,255,255,.2);
-  border-radius:20px;
-  color:#aaa;
-  line-height:2;
-  font-size:.9rem;
-}
-
-/* =========================
-   CANVAS FUEGOS
-========================= */
-
-#fireworks{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:2000;
-  opacity:0;
-}
-
-#fireworks.active{
-  opacity:1;
-}
-
-/* =========================
-   DESTELLOS
-========================= */
-
-.spark{
-  position:fixed;
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:
-    0 0 7px #fff,
-    0 0 15px #ff4f91;
-  pointer-events:none;
-  z-index:-1;
-  animation:floatSpark linear infinite;
-}
-
-@keyframes floatSpark{
-  0%{
-    transform:translateY(110vh) scale(.3);
-    opacity:0;
-  }
-  15%{opacity:1;}
-  85%{opacity:1;}
-  100%{
-    transform:translateY(-10vh) scale(1);
-    opacity:0;
-  }
+footer {
+    text-align: center;
+    padding: 35px 10px 10px;
+    color: #ddd;
+    font-size: 15px;
+    letter-spacing: 2px;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media(max-width:700px){
+@media (max-width: 600px) {
 
-  .glass{
-    padding:35px 20px;
-    border-radius:22px;
-  }
+    .contenedor {
+        width: 94%;
+        padding-top: 20px;
+    }
 
-  .countdown{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .portada {
+        padding: 40px 15px;
+    }
 
-  .hero{
-    padding-top:80px;
-  }
+    .disco {
+        width: 100px;
+        height: 100px;
+    }
 
-  .hero h2{
-    letter-spacing:6px;
-  }
+    .mis15 {
+        letter-spacing: 5px;
+    }
 
-  .section{
-    padding:55px 15px;
-  }
+    .contador {
+        gap: 7px;
+    }
 
-  .date-big{
-    letter-spacing:4px;
-  }
-}
+    .tiempo {
+        padding: 14px 4px;
+    }
 
-@media(prefers-reduced-motion:reduce){
+    .mensaje {
+        font-size: 18px;
+    }
 
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-  }
+    .direccion {
+        font-size: 16px;
+    }
 }
 </style>
 </head>
@@ -641,640 +455,450 @@ footer{
 <body>
 
 <!-- LUCES -->
-<div class="disco-light light-left"></div>
-<div class="disco-light light-right"></div>
+<div class="luz luz1"></div>
+<div class="luz luz2"></div>
 
-<!-- DESTELLOS -->
-<div id="particles"></div>
+<!-- FUEGOS ARTIFICIALES -->
+<canvas id="fuegos"></canvas>
 
-<!-- =========================
-     PANTALLA DE BIENVENIDA
-========================= -->
+<!-- PARTÍCULAS -->
+<div class="particula" style="left:8%;animation-duration:8s;"></div>
+<div class="particula" style="left:18%;animation-duration:11s;animation-delay:2s;"></div>
+<div class="particula" style="left:30%;animation-duration:9s;animation-delay:1s;"></div>
+<div class="particula" style="left:43%;animation-duration:12s;animation-delay:3s;"></div>
+<div class="particula" style="left:56%;animation-duration:10s;"></div>
+<div class="particula" style="left:68%;animation-duration:8s;animation-delay:2s;"></div>
+<div class="particula" style="left:80%;animation-duration:11s;"></div>
+<div class="particula" style="left:92%;animation-duration:9s;animation-delay:1s;"></div>
 
-<section id="welcome">
+<div class="contenedor">
 
-  <div class="welcome-content">
+    <!-- PORTADA -->
+    <section class="portada">
 
-    <div class="disco-ball"></div>
+        <div class="disco"></div>
 
-    <div class="welcome-small">
-      Una noche para recordar
-    </div>
-
-    <div class="welcome-name">
-      Yoselin
-    </div>
-
-    <div class="welcome-event">
-      MIS 15
-    </div>
-
-    <button class="open-button" id="openInvitation">
-      ABRIR INVITACIÓN
-    </button>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     FUEGOS ARTIFICIALES
-========================= -->
-
-<canvas id="fireworks"></canvas>
-
-<!-- =========================
-     INVITACIÓN
-========================= -->
-
-<main id="invitation">
-
-  <!-- PORTADA -->
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div class="kicker">
-        UNA NOCHE PARA RECORDAR
-      </div>
-
-      <h1>Yoselin</h1>
-
-      <h2>MIS 15</h2>
-
-    </div>
-
-  </section>
-
-  <!-- FECHA -->
-  <section class="section">
-
-    <div class="glass">
-
-      <h2 class="section-title">
-        UNA FECHA ESPECIAL
-      </h2>
-
-      <div class="date-big">
-        05 · 12 · 2026
-      </div>
-
-      <div class="time">
-        20:00 hs
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- UBICACIÓN -->
-  <section class="section">
-
-    <div class="glass location">
-
-      <h2 class="section-title">
-        📍 UBICACIÓN
-      </h2>
-
-      <h3>
-        SALÓN DE JUBILADOS
-      </h3>
-
-      <p>
-        Sobre Facundo Quiroga<br>
-        frente a Ferretería Avenida
-      </p>
-
-      <a
-        class="button"
-        href="https://maps.app.goo.gl/r3GvA9zV5Ms2vXLY9?g_st=aw"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        📍 VER UBICACIÓN
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- CUENTA REGRESIVA -->
-  <section class="section">
-
-    <div class="glass">
-
-      <h2 class="section-title">
-        FALTAN...
-      </h2>
-
-      <div class="countdown">
-
-        <div class="count-box">
-          <span class="count-number" id="days">0</span>
-          <span class="count-label">Días</span>
+        <div class="pre-titulo">
+            Una noche para recordar
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="hours">0</span>
-          <span class="count-label">Horas</span>
+        <h1 class="nombre">
+            Yoselin
+        </h1>
+
+        <div class="mis15">
+            MIS 15
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="minutes">0</span>
-          <span class="count-label">Minutos</span>
+    </section>
+
+    <!-- FECHA -->
+    <section class="tarjeta">
+
+        <div class="titulo-seccion">
+            ✨ Una fecha especial ✨
         </div>
 
-        <div class="count-box">
-          <span class="count-number" id="seconds">0</span>
-          <span class="count-label">Segundos</span>
+        <div class="fecha">
+            05 · 12 · 2026
         </div>
 
-      </div>
+        <div class="hora">
+            20:00 hs
+        </div>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- UBICACIÓN -->
+    <section class="tarjeta">
 
-  <!-- MÚSICA -->
-  <section class="section">
+        <div class="titulo-seccion">
+            📍 Ubicación
+        </div>
 
-    <div class="glass music">
+        <div class="lugar">
+            SALÓN DE JUBILADOS
+        </div>
 
-      <h2 class="section-title">
-        🎵 MI CANCIÓN
-      </h2>
+        <div class="direccion">
+            Sobre Facundo Quiroga<br>
+            frente a Ferretería Avenida
+        </div>
 
-      <audio id="music" controls preload="metadata">
-        <source src="musica.mp3" type="audio/mpeg">
-        Tu navegador no puede reproducir este audio.
-      </audio>
+        <a
+            class="boton"
+            href="https://maps.app.goo.gl/r3GvA9zV5Ms2vXLY9?g_st=aw"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            📍 VER UBICACIÓN
+        </a>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- CUENTA REGRESIVA -->
+    <section class="tarjeta">
 
-  <!-- LLUVIA DE SOBRES -->
-  <section class="section">
+        <div class="titulo-seccion">
+            ⏳ Falta cada vez menos
+        </div>
 
-    <div class="glass envelope">
+        <div class="contador">
 
-      <div class="envelope-icon">
-        💌
-      </div>
+            <div class="tiempo">
+                <span class="numero" id="dias">00</span>
+                <span class="etiqueta">DÍAS</span>
+            </div>
 
-      <h2 class="section-title">
-        LLUVIA DE SOBRES
-      </h2>
+            <div class="tiempo">
+                <span class="numero" id="horas">00</span>
+                <span class="etiqueta">HORAS</span>
+            </div>
 
-      <p>
-        Tu presencia es mi mejor regalo.<br><br>
+            <div class="tiempo">
+                <span class="numero" id="minutos">00</span>
+                <span class="etiqueta">MINUTOS</span>
+            </div>
 
-        Si deseas hacerme un obsequio,<br>
-        habrá una caja de sobres durante la celebración.<br><br>
+            <div class="tiempo">
+                <span class="numero" id="segundos">00</span>
+                <span class="etiqueta">SEGUNDOS</span>
+            </div>
 
-        Gracias por acompañarme en esta noche tan especial.
-      </p>
+        </div>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- MENSAJE -->
+    <section class="tarjeta">
 
-  <!-- MENSAJE -->
-  <section class="section">
+        <div class="titulo-seccion">
+            💖 Con mucho cariño
+        </div>
 
-    <div class="glass message">
+        <div class="mensaje">
 
-      <h2 class="section-title">
-        PARA VOS
-      </h2>
+            Hay momentos que quedan para siempre
+            en el corazón.
 
-      <p>
-        Hay momentos que quedan para siempre en el corazón.<br><br>
+            <br><br>
 
-        Y quiero compartir uno de los más especiales
-        de mi vida con vos.<br><br>
+            Y quiero compartir uno de los más
+            especiales de mi vida con vos.
 
-        Te espero para celebrar mis 15.
-      </p>
+            <br><br>
 
-    </div>
+            Te espero para celebrar mis 15.
 
-  </section>
+            <div class="firma">
+                Yoselin ✨
+            </div>
 
-  <!-- CONFIRMACIÓN -->
-  <section class="section">
+        </div>
 
-    <div class="glass whatsapp">
+    </section>
 
-      <h2 class="section-title">
-        💌 CONFIRMÁ TU ASISTENCIA
-      </h2>
+    <!-- WHATSAPP -->
+    <section class="tarjeta">
 
-      <p>
-        ¡Me encantaría compartir esta noche con vos!
-      </p>
+        <div class="titulo-seccion">
+            💌 Confirmación
+        </div>
 
-      <a
-        class="button whatsapp-button"
-        href="https://wa.me/543743557901?text=Hola%20Yoselin%2C%20quiero%20confirmar%20mi%20asistencia%20a%20tus%2015."
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        💬 CONFIRMAR ASISTENCIA
-      </a>
+        <div class="direccion">
+            Espero contar con vos en esta noche
+            tan especial.
+        </div>
 
-    </div>
+        <a
+            class="boton whatsapp"
+            href="https://wa.me/543743557901?text=Hola%20Yoselin%2C%20quiero%20confirmar%20mi%20asistencia%20a%20tus%2015."
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            💬 CONFIRMAR ASISTENCIA
+        </a>
 
-  </section>
+    </section>
 
-</main>
+    <footer>
+        🪩 ✨ Yoselin · Mis 15 · 2026 ✨ 🪩
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-
-  <div class="footer-main">
-    🪩 ✨ Yoselin · Mis 15 · 2026 ✨ 🪩
-  </div>
-
-  <div class="future">
-    <strong>Espacio reservado para:</strong><br>
-    📸 Galería de fotos<br>
-    🎬 Video<br>
-    👗 Dress code<br>
-    💌 Mensajes familiares
-  </div>
-
-</footer>
+</div>
 
 <script>
 
-/* =========================
-   ABRIR INVITACIÓN
-========================= */
-
-const openButton = document.getElementById("openInvitation");
-const welcome = document.getElementById("welcome");
-const invitation = document.getElementById("invitation");
-const music = document.getElementById("music");
-
-openButton.addEventListener("click", function(){
-
-  /* Intentar reproducir música */
-  music.play().catch(function(){
-    /* Algunos navegadores pueden bloquear el audio.
-       El usuario podrá iniciarlo desde el reproductor. */
-  });
-
-  /* Fuegos */
-  startFireworks();
-
-  /* Transición */
-  setTimeout(function(){
-    welcome.classList.add("hidden");
-    invitation.classList.add("visible");
-    document.body.style.overflow = "auto";
-  }, 900);
-
-});
-
-
-/* =========================
+/* =====================================================
    CUENTA REGRESIVA
-========================= */
+===================================================== */
 
-const eventDate = new Date("2026-12-05T20:00:00-03:00").getTime();
+const fechaEvento = new Date("2026-12-05T20:00:00-03:00").getTime();
 
-function updateCountdown(){
+function actualizarCuenta() {
 
-  const now = Date.now();
-  let distance = eventDate - now;
+    const ahora = new Date().getTime();
+    const diferencia = fechaEvento - ahora;
 
-  if(distance < 0){
-    distance = 0;
-  }
+    if (diferencia <= 0) {
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("dias").textContent = "00";
+        document.getElementById("horas").textContent = "00";
+        document.getElementById("minutos").textContent = "00";
+        document.getElementById("segundos").textContent = "00";
 
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) /
-    (1000 * 60 * 60)
-  );
+        return;
+    }
 
-  const minutes = Math.floor(
-    (distance % (1000 * 60 * 60)) /
-    (1000 * 60)
-  );
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor(
+        (diferencia / (1000 * 60 * 60)) % 24
+    );
+    const minutos = Math.floor(
+        (diferencia / (1000 * 60)) % 60
+    );
+    const segundos = Math.floor(
+        (diferencia / 1000) % 60
+    );
 
-  const seconds = Math.floor(
-    (distance % (1000 * 60)) /
-    1000
-  );
+    document.getElementById("dias").textContent =
+        String(dias).padStart(2, "0");
 
-  document.getElementById("days").textContent =
-    String(days).padStart(2,"0");
+    document.getElementById("horas").textContent =
+        String(horas).padStart(2, "0");
 
-  document.getElementById("hours").textContent =
-    String(hours).padStart(2,"0");
+    document.getElementById("minutos").textContent =
+        String(minutos).padStart(2, "0");
 
-  document.getElementById("minutes").textContent =
-    String(minutes).padStart(2,"0");
-
-  document.getElementById("seconds").textContent =
-    String(seconds).padStart(2,"0");
+    document.getElementById("segundos").textContent =
+        String(segundos).padStart(2, "0");
 }
 
-updateCountdown();
-setInterval(updateCountdown,1000);
+actualizarCuenta();
+
+setInterval(actualizarCuenta, 1000);
 
 
-/* =========================
-   PARTÍCULAS
-========================= */
-
-const particleContainer =
-  document.getElementById("particles");
-
-for(let i = 0; i < 55; i++){
-
-  const spark = document.createElement("div");
-
-  spark.className = "spark";
-
-  spark.style.left =
-    Math.random() * 100 + "%";
-
-  spark.style.animationDuration =
-    (5 + Math.random() * 9) + "s";
-
-  spark.style.animationDelay =
-    (-Math.random() * 10) + "s";
-
-  spark.style.opacity =
-    .3 + Math.random() * .7;
-
-  const size =
-    1 + Math.random() * 4;
-
-  spark.style.width = size + "px";
-  spark.style.height = size + "px";
-
-  particleContainer.appendChild(spark);
-}
-
-
-/* =========================
+/* =====================================================
    FUEGOS ARTIFICIALES
-========================= */
+   Se ejecutan automáticamente al abrir la invitación
+===================================================== */
 
-const canvas = document.getElementById("fireworks");
+const canvas = document.getElementById("fuegos");
 const ctx = canvas.getContext("2d");
 
-let fireworks = [];
-let fireworkParticles = [];
-let fireworksRunning = false;
+let ancho;
+let alto;
 
-const fireColors = [
-  "#ffffff",
-  "#dddddd",
-  "#ff304f",
-  "#ff4f91",
-  "#cfcfd8"
+function ajustarCanvas() {
+    ancho = canvas.width = window.innerWidth;
+    alto = canvas.height = window.innerHeight;
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize", ajustarCanvas);
+
+const colores = [
+    "#ffffff",
+    "#eeeeee",
+    "#c0c0c0",
+    "#ff1744",
+    "#ff4f81",
+    "#ffb6c1"
 ];
 
-function resizeCanvas(){
+let particulasFuego = [];
+let cohetes = [];
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+function crearCohete() {
 
-}
+    const x = Math.random() * ancho;
 
-resizeCanvas();
+    const objetivoY =
+        alto * (0.15 + Math.random() * 0.42);
 
-window.addEventListener("resize", resizeCanvas);
-
-
-/* Crear cohete */
-
-function createFirework(){
-
-  const startX =
-    Math.random() * canvas.width;
-
-  const targetX =
-    canvas.width * (.15 + Math.random() * .7);
-
-  const targetY =
-    canvas.height * (.12 + Math.random() * .42);
-
-  fireworks.push({
-    x:startX,
-    y:canvas.height + 10,
-    targetX:targetX,
-    targetY:targetY,
-    speed:8 + Math.random() * 4,
-    color:fireColors[
-      Math.floor(Math.random() * fireColors.length)
-    ]
-  });
-
-}
-
-
-/* Explosión */
-
-function explode(x,y,color){
-
-  const amount = 90 + Math.floor(Math.random() * 45);
-
-  for(let i=0;i<amount;i++){
-
-    const angle =
-      Math.random() * Math.PI * 2;
-
-    const speed =
-      1.5 + Math.random() * 6;
-
-    fireworkParticles.push({
-
-      x:x,
-      y:y,
-
-      vx:Math.cos(angle) * speed,
-      vy:Math.sin(angle) * speed,
-
-      life:1,
-
-      decay:.008 + Math.random() * .014,
-
-      color:color
-
+    cohetes.push({
+        x: x,
+        y: alto + 10,
+        objetivoY: objetivoY,
+        velocidad: 8 + Math.random() * 3,
+        color: colores[
+            Math.floor(Math.random() * colores.length)
+        ]
     });
-
-  }
-
 }
 
+function explotar(x, y, color) {
 
-/* Animación */
+    const cantidad = 85 + Math.floor(Math.random() * 45);
 
-function animateFireworks(){
+    for (let i = 0; i < cantidad; i++) {
 
-  if(!fireworksRunning) return;
+        const angulo =
+            Math.random() * Math.PI * 2;
 
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+        const velocidad =
+            1.5 + Math.random() * 5.5;
 
-  /* Cohetes */
+        particulasFuego.push({
+            x: x,
+            y: y,
 
-  for(let i=fireworks.length-1;i>=0;i--){
+            vx: Math.cos(angulo) * velocidad,
+            vy: Math.sin(angulo) * velocidad,
 
-    const f = fireworks[i];
+            vida: 1,
 
-    const dx = f.targetX - f.x;
-    const dy = f.targetY - f.y;
+            decaimiento:
+                0.008 + Math.random() * 0.012,
 
-    const distance =
-      Math.sqrt(dx*dx + dy*dy);
+            tamaño:
+                1.2 + Math.random() * 2,
 
-    const vx =
-      dx / distance * f.speed;
+            color: color
+        });
+    }
+}
 
-    const vy =
-      dy / distance * f.speed;
+function dibujarFuegos() {
 
-    f.x += vx;
-    f.y += vy;
+    ctx.fillStyle = "rgba(10, 0, 8, 0.18)";
+    ctx.fillRect(0, 0, ancho, alto);
 
-    ctx.beginPath();
-    ctx.arc(f.x,f.y,2,0,Math.PI*2);
+    /* Cohetes */
 
-    ctx.fillStyle=f.color;
-    ctx.shadowBlur=15;
-    ctx.shadowColor=f.color;
-    ctx.fill();
+    for (let i = cohetes.length - 1; i >= 0; i--) {
 
-    if(distance < 15){
+        const cohete = cohetes[i];
 
-      explode(
-        f.x,
-        f.y,
-        f.color
-      );
+        cohete.y -= cohete.velocidad;
 
-      fireworks.splice(i,1);
+        ctx.beginPath();
 
+        ctx.arc(
+            cohete.x,
+            cohete.y,
+            2,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = cohete.color;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = cohete.color;
+        ctx.fill();
+
+        if (cohete.y <= cohete.objetivoY) {
+
+            explotar(
+                cohete.x,
+                cohete.y,
+                cohete.color
+            );
+
+            cohetes.splice(i, 1);
+        }
     }
 
-  }
+    /* Partículas */
 
+    for (
+        let i = particulasFuego.length - 1;
+        i >= 0;
+        i--
+    ) {
 
-  /* Partículas */
+        const p = particulasFuego[i];
 
-  for(let i=fireworkParticles.length-1;i>=0;i--){
+        p.x += p.vx;
+        p.y += p.vy;
 
-    const p=fireworkParticles[i];
+        p.vy += 0.035;
 
-    p.x += p.vx;
-    p.y += p.vy;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
 
-    p.vy += .045;
+        p.vida -= p.decaimiento;
 
-    p.vx *= .985;
-    p.vy *= .985;
+        if (p.vida <= 0) {
+            particulasFuego.splice(i, 1);
+            continue;
+        }
 
-    p.life -= p.decay;
+        ctx.beginPath();
 
-    if(p.life<=0){
+        ctx.arc(
+            p.x,
+            p.y,
+            p.tamaño,
+            0,
+            Math.PI * 2
+        );
 
-      fireworkParticles.splice(i,1);
-      continue;
+        ctx.globalAlpha = p.vida;
+        ctx.fillStyle = p.color;
 
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = p.color;
+
+        ctx.fill();
+
+        ctx.globalAlpha = 1;
     }
 
-    ctx.beginPath();
+    ctx.shadowBlur = 0;
 
-    ctx.arc(
-      p.x,
-      p.y,
-      1.5 + p.life * 2,
-      0,
-      Math.PI*2
-    );
-
-    ctx.globalAlpha=p.life;
-
-    ctx.fillStyle=p.color;
-
-    ctx.shadowBlur=18;
-    ctx.shadowColor=p.color;
-
-    ctx.fill();
-
-  }
-
-  ctx.globalAlpha=1;
-
-  requestAnimationFrame(animateFireworks);
-
+    requestAnimationFrame(dibujarFuegos);
 }
 
 
-/* Lanzamiento automático */
+/* =====================================================
+   LANZAMIENTO INICIAL
+===================================================== */
 
-function startFireworks(){
+function lanzarFuegosIniciales() {
 
-  canvas.classList.add("active");
+    let cantidad = 0;
 
-  fireworksRunning=true;
+    const intervalo = setInterval(() => {
 
-  for(let i=0;i<4;i++){
+        crearCohete();
 
-    setTimeout(
-      createFirework,
-      i * 250
-    );
+        cantidad++;
 
-  }
+        if (cantidad >= 10) {
+            clearInterval(intervalo);
+        }
 
-  animateFireworks();
-
-  const launchInterval =
-    setInterval(function(){
-
-      if(!fireworksRunning){
-
-        clearInterval(launchInterval);
-        return;
-
-      }
-
-      createFirework();
-
-    },700);
-
-
-  /* Los fuegos duran unos segundos */
-
-  setTimeout(function(){
-
-    fireworksRunning=false;
-
-    canvas.classList.remove("active");
-
-    ctx.clearRect(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-  },9000);
-
+    }, 450);
 }
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+dibujarFuegos();
+
+setTimeout(() => {
+    lanzarFuegosIniciales();
+}, 500);
+
+
+/* Fuegos adicionales durante unos segundos */
+
+setTimeout(() => {
+    crearCohete();
+}, 3500);
+
+setTimeout(() => {
+    crearCohete();
+}, 4300);
+
+setTimeout(() => {
+    crearCohete();
+}, 5100);
 
 </script>
 
